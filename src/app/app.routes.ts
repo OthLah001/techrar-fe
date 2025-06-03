@@ -10,4 +10,8 @@ export const routes: Routes = [
         path: 'auth',
         loadChildren: () => import('./auth/auth-module').then((m) => m.AuthModule),
     },
+    {
+        path: 'campaigns',
+        loadChildren: () => import('./campaigns/campaigns-module').then((m) => m.CampaignsModule),
+    },
 ];

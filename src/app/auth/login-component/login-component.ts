@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { finalize } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-component',
@@ -19,6 +20,7 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private router: Router
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -49,8 +51,7 @@ export class LoginComponent {
       .subscribe({
         next: (resp) => {
           this.authService.setUserToken(resp.token);
-          console.log('Login successful:', resp);
-          // this.router.navigate(['/books']);
+          this.router.navigate(['/campaigns/list']);
         },
         error: (err) => {
           if (err.error?.error_name) {
