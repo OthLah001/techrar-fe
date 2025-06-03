@@ -1,0 +1,51 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
+        <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+
+        <form [formGroup]="loginForm" (ngSubmit)="submit()" class="space-y-5">
+            <p class="text-sm text-red-600 mt-1 text-center" *ngIf="loginError">
+                {{ errorMessage }}
+            </p>
+            <!-- Email Field -->
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input id="email" type="email" formControlName="email"
+                    class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2"
+                    [ngClass]="{
+                        'border-gray-300 focus:ring-blue-500': email.valid || !email.touched,
+                        'border-red-500 focus:ring-red-500': email.invalid && email.touched
+                    }" />
+                <p class="text-sm text-red-600 mt-1" *ngIf="email.touched && email.errors?.['required']">
+                    Email is required.
+                </p>
+                <p class="text-sm text-red-600 mt-1" *ngIf="email.touched && email.errors?.['email']">
+                    Please enter a valid email.
+                </p>
+            </div>
+
+            <!-- Password Field -->
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input id="password" type="password" formControlName="password"
+                    class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2"
+                    [ngClass]="{
+                            'border-gray-300 focus:ring-blue-500': password.valid || !password.touched,
+                            'border-red-500 focus:ring-red-500': password.invalid && password.touched
+                    }" />
+                <p class="text-sm text-red-600 mt-1" *ngIf="password.touched && password.errors?.['required']">
+                    Password is required.
+                </p>
+                <p class="text-sm text-red-600 mt-1" *ngIf="password.touched && password.errors?.['minlength']">
+                    Password must be at least 8 characters.
+                </p>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit"
+                class="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition duration-200"
+                [disabled]="loginForm.invalid || isLoggingIn">
+                Sign In
+            </button>
+        </form>
+    </div>
+</div>
