@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 
 import { CampaignsRoutingModule } from './campaigns-routing-module';
+import { CampaignsListComponent } from './campaigns-list-component/campaigns-list-component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    CampaignsListComponent
+  ],
   imports: [
     CommonModule,
-    CampaignsRoutingModule
+    CampaignsRoutingModule,
+    NgClass
   ]
 })
 export class CampaignsModule { }
