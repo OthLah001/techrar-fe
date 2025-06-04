@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthenticatedGuard } from '../guards/authenticated.guard';
 import { CampaignsListComponent } from './campaigns-list-component/campaigns-list-component';
 import { CreateCampaignComponent } from './create-campaign-component/create-campaign-component';
+import { NotificationsListComponent } from './notifications-list-component/notifications-list-component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,11 @@ const routes: Routes = [
       component: CreateCampaignComponent,
       canActivate: [AuthenticatedGuard],
     },
+    {
+      path: ':id/notifications',
+      component: NotificationsListComponent,
+      canActivate: [AuthenticatedGuard],
+    }
 ];
 
 @NgModule({

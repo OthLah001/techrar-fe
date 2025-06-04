@@ -19,3 +19,10 @@ export type TProvider = {
     name: string;
     channel: string[];
 }
+
+export type TNotification = {
+    id: number;
+    recipient: string;
+    status: "sent" | "failed" | "pending";
+    created_at: string;
+}
