@@ -1,0 +1,122 @@
+<div class="max-w-4xl mx-auto p-6">
+    <!-- Back link -->
+    <div class="mb-6 flex justify-between items-center">
+        <a href="/campaigns/list" class="text-sm text-blue-600 hover:underline flex items-center gap-1">
+            ← Back to Campaigns
+        </a>
+        <h2 class="text-2xl font-semibold text-gray-800">New Campaign</h2>
+    </div>
+
+    <!-- Success message -->
+    <div *ngIf="success === true" class="mb-4 p-4 bg-green-100 text-green-800 border border-green-300 rounded-lg">
+        Campaign created successfully!
+    </div>
+    <div *ngIf="success === false" class="mb-4 p-4 bg-red-100 text-red-800 border border-red-300 rounded-lg">
+        {{ errorMessage }}
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-6 bg-white p-6 rounded-xl shadow-xl">
+        <div>
+            <label class="block mb-1 font-medium">Campaign Name</label>
+            <input formControlName="name" type="text" class="w-full px-4 py-2 border rounded-lg"
+                placeholder="e.g. Summer Promo" />
+
+            <p *ngIf="form.get('name')?.touched && form.get('name')?.hasError('required')"
+                class="text-red-600 text-sm mt-1">
+                Name is required.
+            </p>
+            <p *ngIf="form.get('name')?.touched && form.get('name')?.hasError('maxlength')"
+                class="text-red-600 text-sm mt-1">
+                Max length is 255 characters.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+            <div>
+                <label class="block mb-1 font-medium">Template</label>
+                <select formControlName="template_id" (change)="onTemplateChange($event)"
+                    class="w-full px-4 py-2 border rounded-lg">
+                    <option *ngFor="let t of templates" [value]="t.id">{{ t.name }}</option>
+                </select>
+
+                <p *ngIf="form.get('template_id')?.touched && form.get('template_id')?.hasError('required')"
+                    class="text-red-600 text-sm mt-1">
+                    Template is required.
+                </p>
+            </div>
+
+            <div>
+                <label class="block mb-1 font-medium">Provider</label>
+                <select formControlName="provider_id" (change)="onProviderChange($event)"
+                    class="w-full px-4 py-2 border rounded-lg">
+                    <option *ngFor="let p of providers" [value]="p.id">{{ p.name }}</option>
+                </select>
+
+                <p *ngIf="form.get('provider_id')?.touched && form.get('provider_id')?.hasError('required')"
+                    class="text-red-600 text-sm mt-1">
+                    Provider is required.
+                </p>
+            </div>
+        </div>
+
+        <div>
+            <label class="block mb-1 font-medium">Channel</label>
+            <select formControlName="channel" class="w-full px-4 py-2 border rounded-lg">
+                <option *ngFor="let c of availableChannels" [value]="c">{{ c }}</option>
+            </select>
+
+            <p *ngIf="form.get('channel')?.touched && form.get('channel')?.hasError('required')"
+                class="text-red-600 text-sm mt-1">
+                Channel is required.
+            </p>
+        </div>
+
+        <div>
+            <label class="block mb-1 font-medium">Subject</label>
+            <input formControlName="subject" type="text" class="w-full px-4 py-2 border rounded-lg"
+                placeholder="e.g. Special Offer Inside" />
+
+            <p *ngIf="form.get('subject')?.touched && form.get('subject')?.hasError('required')"
+                class="text-red-600 text-sm mt-1">
+                Subject is required.
+            </p>
+            <p *ngIf="form.get('subject')?.touched && form.get('subject')?.hasError('maxlength')"
+                class="text-red-600 text-sm mt-1">
+                Max length is 255 characters.
+            </p>
+        </div>
+
+        <div>
+            <label class="block mb-1 font-medium">Message</label>
+            <textarea formControlName="message" rows="4" class="w-full px-4 py-2 border rounded-lg"></textarea>
+
+            <p *ngIf="form.get('message')?.touched && form.get('message')?.hasError('required')"
+                class="text-red-600 text-sm mt-1">
+                Message is required.
+            </p>
+        </div>
+
+        <div>
+            <label class="block mb-1 font-medium">Scheduled At <span class="text-gray-400">(optional)</span></label>
+            <input formControlName="scheduled_at" type="datetime-local" class="w-full px-4 py-2 border rounded-lg" />
+        </div>
+
+        <div>
+            <label class="block mb-1 font-medium">Recipients CSV</label>
+            <input type="file" (change)="onFileChange($event)" accept=".csv"
+                class="w-full px-4 py-2 border rounded-lg bg-white" />
+
+            <p *ngIf="missingFile" class="text-red-600 text-sm mt-1">
+                File is required.
+            </p>
+        </div>
+
+        <div class="pt-4">
+            <button type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition"
+                [disabled]="loading">
+                {{ loading ? 'Creating...' : 'Create Campaign' }}
+            </button>
+        </div>
+    </form>
+</div>

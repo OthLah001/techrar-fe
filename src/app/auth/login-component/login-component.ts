@@ -15,7 +15,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   isLoggingIn: boolean = false;
   loginError: boolean = false;
-  errorMessage: string = 'An error occurred. Please try again!';
+  errorMessage: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -54,9 +54,7 @@ export class LoginComponent {
           this.router.navigate(['/campaigns/list']);
         },
         error: (err) => {
-          if (err.error?.error_name) {
-            this.errorMessage = err.error.message;
-          }
+          this.errorMessage = err.error?.error_name ? err.error.message : 'An error occurred. Please try again!';
           this.loginError = true;
         },
       });

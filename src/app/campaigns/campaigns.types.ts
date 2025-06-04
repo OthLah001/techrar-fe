@@ -7,3 +7,15 @@ export type TCampaign = {
     channel: string;
     scheduled_at: string;
 }
+
+export type TTemplate = {
+    id: number;
+    name: string;
+    body: string;
+}
+
+export type TProvider = {
+    id: number;
+    name: string;
+    channel: string[];
+}
