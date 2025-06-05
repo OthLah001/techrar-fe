@@ -1,59 +1,51 @@
-# TechrarFe
+# Techrar Notification Service - Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.0.
+This is the **frontend** for the Techrar Notification Service project. It provides API endpoints to fetch campaigns, create campaigns, and check the status of the notifications.
 
-## Development server
+## Features
 
-To start a local development server, run:
+✅ Multi-Channel Messaging  
+✅ Merchant API 
+✅ Web Dashboard
+✅ Scheduling & Delivery
+✅ Performance & Scalability
+✅ Persistence
+✅ Security
 
-```bash
-ng serve
-```
+---
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Installation Guide
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### **Clone the Repository**
 
 ```bash
-ng generate --help
+git clone https://github.com/OthLah001/techrar-fe.git
+cd techrar-fe
 ```
 
-## Building
+### **Install Node.js & Yarn**
 
-To build the project run:
+Make sure you have:
+
+- **Node.js** (version 16 or later) → [Download Here](https://nodejs.org/)
+- **Yarn** (package manager) → Install via:
 
 ```bash
-ng build
+npm install -g yarn
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### **Install Dependencies**
 
 ```bash
-ng test
+yarn install
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### **Run the Development Server**
 
 ```bash
-ng e2e
+yarn start
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+The frontend will be available at **`http://localhost:4200/`**.
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
